@@ -499,10 +499,10 @@ let save file string =
 let load_file f =
   let ic = open_in f in
   let n = in_channel_length ic in
-  let s = String.make  n ' ' in
+  let s = Bytes.make  n ' ' in
   really_input ic s 0 n;
   close_in ic;
-  (s)
+  Bytes.to_string (s)
 
 let gen ?return:(r=false) ?only:(o=Devices.Both) ((ker: ('a, 'b, 'c,'d,'e) sarek_kernel)) =
   let kir,k = ker in
